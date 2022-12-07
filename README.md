@@ -7,28 +7,28 @@ A simple GUI web based application for making pixel art.
 
 ### 1.0 
 
-| Priorities | Description |
+| Priorities | Description                              |
 | --- | --- |
-| A | User can select grid size |
-| C | application autogenerates design canvas |
-| B | User can select the color to draw with |
-| D | User can reselect a color |
+| A | User can select grid size                         |
+| C | application autogenerates design canvas           |
+| B | User can select the color to draw with            |
+| D | User can reselect a color                         |
 
 
 ### 2.0 
-| Priorities | Description |
+| Priorities | Description                              |
 | --- | --- |
-| A | User can expand grid size, but not reduce |
-| B | User can download pixel art |
+| A | User can expand grid size, but not reduce         |
+| B | User can download pixel art                       |
 
 ### 3.0 
 
-| Priorities | Description |
+| Priorities | Description                              |
 | --- | --- |
-| A | User can upload image (.jpg, .png file types) |
-| B | Application converts image to pixel art |
-| C | User can select pixel density |
-| D | User can download file, locally |
+| A | User can upload image (.jpg, .png file types)     |
+| B | Application converts image to pixel art           |
+| C | User can select pixel density                     |
+| D | User can download file, locally                   |
 
 
 
