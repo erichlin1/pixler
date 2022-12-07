@@ -3,7 +3,9 @@
 ## Product Description
 A simple GUI web based application for making pixel art.
 
-## 1.0 Product Functionalities
+## Product Functionalities
+
+### 1.0 
 
 | Priorities | Description |
 | --- | --- |
@@ -13,21 +15,20 @@ A simple GUI web based application for making pixel art.
 | D | User can reselect a color |
 
 
-## 2.0 Product Functionalities
-
+### 2.0 
 | Priorities | Description |
 | --- | --- |
 | A | User can expand grid size, but not reduce |
 | B | User can download pixel art |
 
-## 3.0 Product Functionalities
+### 3.0 
 
 | Priorities | Description |
 | --- | --- |
 | A | User can upload image (.jpg, .png file types) |
 | B | Application converts image to pixel art |
 | C | User can select pixel density |
-| D | User can download file locally |
+| D | User can download file, locally |
 
 
 
