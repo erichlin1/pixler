@@ -1,4 +1,4 @@
-# pixlr - Pixel Art Maker
+# Pixlr - Pixel Art Maker
 
 ## Description
 A simple GUI web based application for making pixel art.
