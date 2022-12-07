@@ -1,8 +1,6 @@
-# Pixlr (Pixel Art Maker)
+# Pixler.xyz
 
 A simple GUI web-based application for making pixel art.
-
-
 
 
 ## Proposed Functionalities
