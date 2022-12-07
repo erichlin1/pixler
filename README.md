@@ -1,4 +1,4 @@
-# Pixler.xyz
+# Pixler
 
 A simple GUI web-based application for making pixel art.
 
