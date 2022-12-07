@@ -1,9 +1,9 @@
-# pixlr
+# pixlr - Pixel Art Maker
 
-## Product Description
+## Description
 A simple GUI web based application for making pixel art.
 
-## Product Functionalities
+## Proposed Functionalities
 
 ### 1.0 
 
