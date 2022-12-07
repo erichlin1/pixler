@@ -23,6 +23,3 @@ A simple GUI web-based application for making pixel art.
 | 2.1* | User can download file, locally                  |
 
 
-
-##
-
