@@ -25,7 +25,7 @@ const server = http.createServer((req, res) => {
     }
     // Home Page
     if (req.method === "GET" && req.url === "/") {
-      const resBody = readFileSync("./html/index.html");
+      const resBody = readFileSync("./main/index.html");
       res.statusCode = 200;
       res.setHeader("Content-Type", "text/html");
       res.end(resBody);
@@ -35,7 +35,7 @@ const server = http.createServer((req, res) => {
     const ext = path.extname(req.url);
     if (req.method === "GET" && ext) {
       try {
-        const resBody = readFileSync('.' + "/public" + req.url);
+        const resBody = readFileSync('.' + "/main" + req.url);
         res.statusCode = 200;
         if (ext === ".jpg" || ext === ".jpeg") {
           res.setHeader("Content-Type", "image/jpeg");
