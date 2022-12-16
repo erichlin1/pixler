@@ -15,10 +15,25 @@
                         If you don't feel creative today, simply upload a picture and download your pixeled art.
                     </p>
             </section>
-            <section class ="grid-size">
-                
+            <section class="grid-size-section">
+                <!-- form submitEvent is fired at this <form> tag once a event is triggered -->
+                <!-- a submit event fires when a user interacts with the element-->
+                <form id="grid-input-field">
+                    <input type="number" id="width-input">
+                    <input type="number" id="length-input">
+                    <input type="submit" value="submit">
+                </form>
+            </section>
+            <section class="canvas-section">
+                <div>
+                    <canvas id="canvas" height="1000" width="1000">
+
+                    </canvas>
+                </div>
+
+
             </section>
 
-        <script type='module' src='main.js'></script>
+        <script type='module' src='index.js'></script>
         </body>
     </html>
