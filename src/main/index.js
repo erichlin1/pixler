@@ -1,12 +1,12 @@
 // * imports, libraries and modules */
 
 class Color {
-    constructor(red, green, blue) {
+    constructor(red, green, blue, alpha) {
         this.red = red;
         this.green = green;
         this.blue = blue;
         /* 1 is fully opaque and 0 is transparent */
-        this.alpha = 1;
+        this.alpha = alpha;
     };
 }
 // rendering context
@@ -49,70 +49,52 @@ const setCanvasSize = (height, width) => {
 
 
 const drawCanvas = (height, width) => {
+    // color #1
+    const silver = new Color(190, 200, 210, 255);
+    // color #2
+    const slate = new Color(30, 0, 210, 255);
     // creates a blank imageData object
-    const imageData = rctx().createImageData(100, 100);
+    const imageData = rctx().createImageData(height, width);
     // used to achieve checker board style 
     let toggle = true;
     // pixel array data
     const pixel = imageData.data;
     // length of total pixels
     const pixelLen = imageData.data.length;
-    // iterates over pixel data to create a checker board style image
-    for (let i = 0; i < pixelLen; i += 4) {
-        // CCO returns false while CCT returns true to achieve a toggle effect
-        toggle = toggle ? canvasColorOne(i, pixel) : canvasColorTwo(i, pixel);
-    };
-    rctx().putImageData(imageData, 20, 20);
-    
+    // creates an array of objects
+    const canvas = createCanvas(pixel, pixelLen, width);
+    console.log(canvas, pixel);
+    for (let i = 0; i < canvas.length; i += 1) {
+        let currColor = canvas[i];
+        i % width ? createColor(currColor, slate) : createColor(currColor, silver);
+    }
+    console.log(pixel);
+    rctx().putImageData(canvas, 20, 20);
 
+};
+
+
+    
+const createCanvas = (pixel, pixelLen, width) => {
+    let colors = [];
+    let temp = [];
+    for (let i = 0; i < pixelLen; i += 4) {
+        for (let j = 0; j < 4; j += 1) {
+            let data = pixel[i + j];
+            temp.push(data);
+        };
+        colors.push(new Color(...temp));
+    };
+    /** returns object of color pixel data */
+    return colors;
 }
 
-/*
-const drawCanvas = (height, width) => {
-    // creates a blank imageData object
-    const imageData = rctx().createImageData(100, 100);
-    // used to achieve checker board style 
-    // Iterate through every pixel
-    for (let i = 0; i < imageData.data.length; i += 4) {
-        // Modify pixel data
-        imageData.data[i + 0] = 190;  // R value
-        imageData.data[i + 1] = 0;    // G value
-        imageData.data[i + 2] = 210;  // B value
-        imageData.data[i + 3] = 255;  // A value
-    }
-
-    // Draw image data to the canvas
-    rctx().putImageData(imageData, 20, 20);
+const createColor = (currColor, baColor) => {
+    currColor.red = baColor.red;
+    currColor.green = baColor.green;
+    currColor.blue = baColor.blue;
+    currColor.alpha = baColor.alpha;
 };
-*/
-    
-
-
-const canvasColorOne = (i, pixel) => {
-    // color #1
-    const slate = new Color(122, 128, 144);
-    pixel[i + 0] = slate.red;
-    pixel[i + 1] = slate.green;
-    pixel[i + 2] = slate.blue;
-    pixel[i + 3] = slate.alpha;
-    console.log(pixel);
-    // returns false to toggle 
-    return false;
-}; 
-/** chose not to implement a second iterative 0 -> 4 because of time and space complexity */
-
-const canvasColorTwo = (i, pixel) => {
-    // color #2
-    const silver = new Color(192, 211, 192);
-    pixel[i + 0] = silver.red;
-    pixel[i + 1] = silver.green;
-    pixel[i + 2] = silver.blue;
-    pixel[i + 3] = silver.alpha;
-
-    // returns false to toggle 
-    return true;
-};
-/** chose not to implement a second iterative 0 -> 4 because of time and space complexity */
 
 
 
