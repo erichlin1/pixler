@@ -1,15 +1,19 @@
+// * imports, libraries and modules */
+import {Pixel} from '/.pixel.js';
 
+// rendering context
+const rctx = () => {
+    const canvasElement = document.getElementById('canvas');
+    const rctx = canvasElement.getContext('2d');
+    return rctx;
+}
 
 
 const fillCanvas = (width, height) => {
-    // getting cavas element
-    const canvasElement = document.getElementById('canvas');
-    // get rendering context
-    const rctx = canvasElement.getContext('2d');
     // setting color
-    rctx.fillStyle = "black";
+    rctx().fillStyle = "black";
     // filling rectangle with color
-    rctx.fillRect(1, 1, width, height);
+    rctx().fillRect(1, 1, width, height);
 
 }
 
@@ -35,19 +39,14 @@ const setCanvasSize = (height, width) => {
 }
 
 const canvasData = (height, width) => {
-    // getting cavas element
-    const canvasElement = document.getElementById('canvas');
-    // get rendering context
-    const rctx = canvasElement.getContext('2d');
-    // create image data
-    const imageData = rctx.createImageData(width, height);
-
-}
+    const slate = {'r': 122, 'g': 128, 'b': 144, 'a': 1};
+    const silver = {'r': 192, 'g': 211, 'b': 192, 'a': 1};
+    const imageData = rctx().createImageData(width, height);
+    const pixelData = imageData.data;
+    const pixelsDataLen = imageData.data.length;
 
 
-
-
-
+};
 
 document.getElementById('grid-input-field').addEventListener("submit", canvasSize)
 
