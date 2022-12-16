@@ -45,6 +45,10 @@ const canvasData = (height, width) => {
 }
 
 
+
+
+
+
 document.getElementById('grid-input-field').addEventListener("submit", canvasSize)
 
 
