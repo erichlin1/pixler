@@ -1,13 +1,12 @@
-/** import { doc } from "../../../../notes/main/notes"; */
-
 // * imports, libraries and modules */
+
 class Color {
     constructor(red, green, blue, alpha) {
         this.red = red;
         this.green = green;
         this.blue = blue;
         /* 1 is fully opaque and 0 is transparent */
-        this.alpha = 1;
+        this.alpha = alpha;
     };
 }
 // rendering context
@@ -33,9 +32,10 @@ const canvasSize = (event) => {
     const width = document.getElementById('width-input').value;
     // user input height
     const height = document.getElementById('height-input').value;
-    console.log(event.target instanceof Node);
-    console.log(event.target);
-
+    // sets attribute
+    setCanvasSize(height, width);
+    drawCanvas(height, width);
+    randomColorGenerator();
 };
 
 const setCanvasSize = (height, width) => {
@@ -46,6 +46,55 @@ const setCanvasSize = (height, width) => {
     // set width attribute
     canvas.setAttribute('width', width);
 }
+
+
+const drawCanvas = (height, width) => {
+    // color #1
+    const silver = new Color(190, 200, 210, 255);
+    // color #2
+    const slate = new Color(30, 0, 210, 255);
+    // creates a blank imageData object
+    const imageData = rctx().createImageData(height, width);
+    // used to achieve checker board style 
+    let toggle = true;
+    // pixel array data
+    const pixel = imageData.data;
+    // length of total pixels
+    const pixelLen = imageData.data.length;
+    // creates an array of objects
+    const canvas = createCanvas(pixel, pixelLen, width);
+    console.log(canvas, pixel);
+    for (let i = 0; i < canvas.length; i += 1) {
+        let currColor = canvas[i];
+        i % width ? createColor(currColor, slate) : createColor(currColor, silver);
+    }
+    console.log(pixel);
+    rctx().putImageData(canvas, 20, 20);
+
+};
+
+const createCanvas = (pixel, pixelLen, width) => {
+    let colors = [];
+    let temp = [];
+    for (let i = 0; i < pixelLen; i += 4) {
+        for (let j = 0; j < 4; j += 1) {
+            let data = pixel[i + j];
+            temp.push(data);
+        };
+        colors.push(new Color(...temp));
+    };
+    /** returns object of color pixel data */
+    return colors;
+}
+
+const createColor = (currColor, baColor) => {
+    currColor.red = baColor.red;
+    currColor.green = baColor.green;
+    currColor.blue = baColor.blue;
+    currColor.alpha = baColor.alpha;
+};
+
+
 
 
 /** randomly generates a number between 0-255 */
@@ -73,7 +122,6 @@ const randomColorGenerator = () => {
 /** displays the randomly generated color */
 const displayRandomColor = () => {
     const color = randomColorGenerator();
-    console.log(color);
     const colorStr = `rgba(${color.red}, ${color.green}, ${color.blue}, ${color.alpha})`;
     rctx().fillStyle = colorStr;
     rctx().fillRect(10, 10, 30, 20);
@@ -82,7 +130,7 @@ const displayRandomColor = () => {
 
 
 
-
+document.getElementById('grid-input-field').addEventListener("submit", canvasSize)
 document.getElementById('random-color').addEventListener("click", displayRandomColor)
 
 
