@@ -1,38 +1,29 @@
-/** import { doc } from "../../../../notes/main/notes"; */
-
-// * imports, libraries and modules */
-class Color {
-    constructor(red, green, blue, alpha) {
-        this.red = red;
-        this.green = green;
-        this.blue = blue;
-        /* 1 is fully opaque and 0 is transparent */
-        this.alpha = 1;
-    };
-}
-
+import Color from './color.js';
+import displayRandomColor from './random-color.js';
 
 window.addEventListener("DOMContentLoaded", () => {
+
         const canvasElement = document.getElementById('canvas');
+        const rctx = canvasElement.getContext('2d');       
+        const pixelWidth = 10;
+        const pixelHeight = 10;
 
-        // rendering context
-        const rctx = (() => {
-            const rctx = canvasElement.getContext('2d');
-            return {'htmlElement': canvasElement, 'renderingContext': rctx};
-        })();
-
-        const canvasSize = (event) => {
+        const canvas = (event) => {
             // prevents default behavior of the submitEvent which is submitting data to the server
             event.preventDefault();
+
             // user input width 
             const width = document.getElementById('width-input').value;
             // user input height
             const height = document.getElementById('height-input').value;
-            // creates a rec
-            createRec(height, width);
+            // sets canvas size
+            setCanvas(height, width);
+            // creates a canvas size
+            createCanvas(height, width);
+            // gets coordinates of canvas 
         };
 
-        const setCanvasSize = (height, width) => {
+        const setCanvas = (height, width) => {
             // canvas elements
             const canvas = document.getElementById('canvas');
             // set height attribute
@@ -41,107 +32,50 @@ window.addEventListener("DOMContentLoaded", () => {
             canvas.setAttribute('width', width);
         }
 
-        const createRec = (height, width) => {
-            /* suppose height is 100 and width is 100 */
-            //rctx.renderingContext.fillRect(0, 0, width, height);
-            //rctx.renderingContext.fillStyle = randomColorGenerator();
-            rctx.renderingContext.rect(0,0, width, height);
-            rctx.renderingContext.rect(width, 0, width, height);
-            rctx.renderingContext.rect(width * 2, 0, width, height);
-            rctx.renderingContext.rect(width * 3, 0, width, height);
-            rctx.renderingContext.rect(width * 4, 0, width, height);
-            rctx.renderingContext.rect(width * 5, 0, width, height);
-            rctx.renderingContext.rect(0, height, width, height);
-            rctx.renderingContext.rect(0, height * 2, width, height);
-            rctx.renderingContext.rect(0, height * 3, width, height);
-            rctx.renderingContext.rect(0, height * 4, width, height);
-            rctx.renderingContext.rect(0, height * 5, width, height);
-
-            rctx.renderingContext.rect(width, height, width, height);
-            rctx.renderingContext.rect(width * 2, height, width, height);
-            rctx.renderingContext.rect(width * 3, height, width, height);
-            rctx.renderingContext.rect(width * 4, height, width, height);
-            rctx.renderingContext.rect(width * 5, height, width, height);
-
-            rctx.renderingContext.rect(width, height * 2, width, height);
-            rctx.renderingContext.rect(width * 2, height * 2, width, height);
-            rctx.renderingContext.rect(width * 3, height * 2, width, height);
-            rctx.renderingContext.rect(width * 4, height * 2, width, height);
-            rctx.renderingContext.rect(width * 5, height * 2, width, height);
-
-            rctx.renderingContext.rect(width, height * 3, width, height);
-            rctx.renderingContext.rect(width * 2, height * 3, width, height);
-            rctx.renderingContext.rect(width * 3, height * 3, width, height);
-            rctx.renderingContext.rect(width * 4, height * 3, width, height);
-            rctx.renderingContext.rect(width * 5, height * 3, width, height);
-
-            rctx.renderingContext.rect(width, height * 4, width, height);
-            rctx.renderingContext.rect(width * 2, height * 4, width, height);
-            rctx.renderingContext.rect(width * 3, height * 4, width, height);
-            rctx.renderingContext.rect(width * 4, height * 4, width, height);
-            rctx.renderingContext.rect(width * 5, height * 4, width, height);
-
-            rctx.renderingContext.rect(width, height * 5, width, height);
-            rctx.renderingContext.rect(width * 2, height * 5, width, height);
-            rctx.renderingContext.rect(width * 3, height * 5, width, height);
-            rctx.renderingContext.rect(width * 4, height * 5, width, height);
-            rctx.renderingContext.rect(width * 5, height * 5, width, height);
-
-
+        const createCanvas = (height, width) => {
+            rctx.fillStyle = 'white';
+            rctx.strokeStyle = 'grey';
+            rctx.fillRect(0, 0, width, height);
+            //rctx.strokeRect(0, 0, width, height);
+            for (let row = 0; row < width; row += 10) {
+                for (let col = 0; col < height; col += 10) {
+                    rctx.strokeRect(row, col, 10, 10);
+                };
+            };
             
-
-            rctx.renderingContext.stroke();
-            console.log(rctx.htmlElement)
         };
-
-        const changeColor = (event) => {
-            event.target.setAttribute('style','background-color: black');
-        };
-
-        /** randomly generates a number between 0-255 */
-        const randomFunction = () => {
-            return Math.ceil(Math.random() * (255 - 0) + 0); 
-        };
-
-        const colorChange = (event) => {
-            console.log()
-            rctx.renderingContext.fillRect(event.x, 100, 20, 20);
-            rctx.renderingContext.fillStyle = 'black';
+        
+        const changeColor = (x, y) => {
+            // defining fill style
+            rctx.fillStyle = 'black';
+            rctx.fillRect(x, y, pixelWidth, pixelHeight);
         };
 
 
-
-
-
-
-        /** randomly generates a color */
-        const randomColorGenerator = () => {
-            // creates an array of undefined ele through Array object constructor and filling each index with null
-            let colorSpace = Array(3).fill(null);
-            // iterates colorSpace and replaces each value with a randomly generated number between 0-255    
-            colorSpace.forEach((data, index, space) => {
-                // reassigns each value with a random number
-                space[index] = randomFunction();
-            });
-            // spreads colorSpace into comma separated values to instantiate pixel object
-            const color = new Color(...colorSpace);
-            // return color
-            return color;
-        };
-
-        /** displays the randomly generated color */
-        const displayRandomColor = () => {
-            const color = randomColorGenerator();
-            const colorStr = `rgba(${color.red}, ${color.green}, ${color.blue}, ${color.alpha})`;
-            return colorStr;
-        };
+        /** changes innerText to and assigns x-y coordinates */
+        const coordinates = (event) => {
+            const currCoordinates = {};
+            const canvasCoordinates = document.getElementById('canvas-coordinates');
+            const boundingClientRect = canvasCoordinates.getBoundingClientRect();
+            const boundingX = boundingClientRect.left;
+            const boundingY = boundingClientRect.top;
+            const clientX = event.clientX;
+            const clientY = event.clientY;
+            const x = clientX - boundingX;
+            const y = clientY - boundingY;
+            currCoordinates['x'] = x;
+            currCoordinates['y'] = y;
+            document.getElementById('canvas-coordinates').innerText = `x: ${currCoordinates.x} y: ${currCoordinates.y}`;
+            // invoke to change color of pixel based on coordinates
+            changeColor(currCoordinates.x, currCoordinates.y);
+        }; 
 
 
 
 
 
-        document.getElementById('grid-input-field').addEventListener("submit", canvasSize)
-        document.getElementById('canvas').addEventListener("click", colorChange)
+        document.getElementById('grid-input-field').addEventListener('submit', canvas);
+        document.getElementById('canvas').addEventListener('mousedown', coordinates)
 });
 
 
