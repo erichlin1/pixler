@@ -75,7 +75,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
         document.getElementById('grid-input-field').addEventListener('submit', canvas);
-        document.getElementById('canvas').addEventListener('mousedown', coordinates)
+        //document.getElementById('canvas').addEventListener('mousedown', coordinates)
 });
 
 
