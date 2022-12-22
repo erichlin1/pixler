@@ -1,6 +1,6 @@
 import Color from './color.js';
 import displayRandomColor from './random-color.js';
-
+/*
 window.addEventListener("DOMContentLoaded", () => {
 
         const canvasElement = document.getElementById('canvas');
@@ -44,7 +44,7 @@ window.addEventListener("DOMContentLoaded", () => {
             };
             
         };
-        
+        /*
         const changeColor = (x, y) => {
             // defining fill style
             rctx.fillStyle = 'black';
@@ -52,7 +52,7 @@ window.addEventListener("DOMContentLoaded", () => {
         };
 
 
-        /** changes innerText to and assigns x-y coordinates */
+        // changes innerText to and assigns x-y coordinates 
         const coordinates = (event) => {
             const currCoordinates = {};
             const canvasCoordinates = document.getElementById('canvas-coordinates');
@@ -69,15 +69,16 @@ window.addEventListener("DOMContentLoaded", () => {
             // invoke to change color of pixel based on coordinates
             changeColor(currCoordinates.x, currCoordinates.y);
         }; 
+        
 
 
 
 
 
-        document.getElementById('grid-input-field').addEventListener('submit', canvas);
+        //document.getElementById('grid-input-field').addEventListener('submit', canvas);
         //document.getElementById('canvas').addEventListener('mousedown', coordinates)
 });
-
+*/
 
 /** GENERAL NOTES:
  * 1. althougth in general HTML element do not have a property type value, <input> tag does.
