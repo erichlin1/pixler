@@ -1,4 +1,4 @@
-import {Color} from './color.js';
+import Color from './color.js';
 
 /** randomly generates a number between 0-255 */
 const randomFunction = () => {

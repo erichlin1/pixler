@@ -1,11 +1,14 @@
 export default class Color {
-    constructor(red, green, blue, alpha, width, height) {
+    // constructor method (all defined parameters will be properties of every instance)
+    constructor(red, green, blue, alpha) {
         this.red = red;
         this.green = green;
         this.blue = blue;
-        /* 1 is fully opaque and 0 is transparent */
+        /* 1 is  opaque and 0 is transparent */
         this.alpha = 1;
-        this.width = 10;
-        this.height = 10;
     };
-}
+    static pixel() {
+        const size = {'width': 10, 'height':10} ;
+        return size;
+    };
+};

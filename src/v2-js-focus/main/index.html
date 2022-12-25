@@ -15,7 +15,7 @@
                         If you don't feel creative today, simply upload a picture and download your pixeled art.
                     </p>
             </section>
-            <section class="canvas-size">
+            <section id="canvas-size-section">
                 <div>
                     <form id="grid-input-field">
                         <input type="number" id="height-input" placeholder="Height">
@@ -23,6 +23,10 @@
                         <input type="submit" value="submit">
                     </form>
                 </div>
+                <div>
+                    <p id="alert-message"></p>
+                </div>
+            </section>
                 <div> 
                     <!-- Canvas -->
                     <div>
@@ -30,7 +34,9 @@
                     </div>
                 </div>
             </section>
-        <canvas id="canvas"></canvas>
+            <div>
+                <canvas id="canvas"></canvas>
+            </div>
         <script type='module' src='./index.js'></script>
         </body>
     </html>
