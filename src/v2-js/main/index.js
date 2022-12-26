@@ -12,9 +12,8 @@ window.addEventListener("DOMContentLoaded", () => {
         const rctx = canvasElement.getContext('2d');       
         // size of `pixel`
         // width
-        const wp = Color.pixel().width;
-        // heigt
-        const hp = Color.pixel().height;
+        const pixelDensity = Color.pixel();
+
 
         const canvas = (event) => {
             // prevents default behavior of the submitEvent which is submitting data to the server
@@ -64,18 +63,25 @@ window.addEventListener("DOMContentLoaded", () => {
             rctx.strokeStyle = 'grey';
             rctx.fillRect(0, 0, width, height);
             //rctx.strokeRect(0, 0, width, height);
-            for (let row = 0; row < width; row += 10) {
-                for (let col = 0; col < height; col += 10) {
-                    rctx.strokeRect(row, col, 10, 10);
+            for (let row = 0; row < width; row += pixelDensity) {
+                for (let col = 0; col < height; col += pixelDensity) {
+                    rctx.strokeRect(row, col, pixelDensity, pixelDensity);
                 };
             };
             
         };
 
+
+        // change pixel density
+        const askPixelDensity = () => {
+            const density = 
+        };
+        
+
         const changeColor = (x, y) => {
             // defining fill style
             rctx.fillStyle = 'black';
-            rctx.fillRect(x, y, wp /* width of `pixel` */, hp /** height of `pixel` */);
+            rctx.fillRect(x, y, pixelDensity, pixelDensity);
         };
 
 
