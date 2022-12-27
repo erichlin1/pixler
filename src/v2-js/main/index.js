@@ -10,9 +10,10 @@ window.addEventListener("DOMContentLoaded", () => {
         const canvasElement = document.getElementById('canvas');
         // gets rendering context for  id `canvas`
         const rctx = canvasElement.getContext('2d');
+
         // enclosed variables for use in multiple callbacks
         const pixelDensity = 10;
-        let densityInput;
+        // let densityInput;
         let height;
         let width;
 
@@ -24,15 +25,10 @@ window.addEventListener("DOMContentLoaded", () => {
             width = document.getElementById('width-input').value;
             // user input height
             height = document.getElementById('height-input').value;        
-            // gets pixel density and converts `string` type to `number` type
-            //densityInput = document.getElementById('density-input').value;
-            // assigns `pixelDensity`, the value of densityInput if true, otherwise 1
-            //pixelDensity = Number(densityInput) > 0 ? Number(densityInput) : 1;
-            // sets canvas size
+            // sets canvas attribute: width and height
             setCanvas();
-            // creates a canvas size
+            // creates the canvas size
             createCanvas();
-            // gets coordinates of canvas 
         })
 
         // use case: sets `height` and `width` of canvas background
@@ -60,38 +56,16 @@ window.addEventListener("DOMContentLoaded", () => {
             message.setAttribute('style','color:red');
             message.innerText = invalidEntry;
         };
-
-        // helper function 
-        const mIterator = () => {
-            for (let row = 0; row < width; row += pixelDensity) {
-                for (let col = 0; col < height; col += pixelDensity) {
-                            rctx.strokeRect(row, col, pixelDensity, pixelDensity);
-                        };
-                    };
-        };
         
-
-
-        const sIterator = (coordinate, stop) => {
-            for (let origin = 0; origin <= stop; origin += pixelDensity) {
-                const previous = coordinate >= origin;
-                const next = coordinate <= origin + pixelDensity;
-                if (previous && next) {
-                    return origin;
-                };
-            };
-        };
-
-
         // use case: creates rec. canvas set by `height` and `width`
         const createCanvas = () => {
             rctx.fillStyle = 'white';
             rctx.strokeStyle = 'lightblue';
             rctx.fillRect(0, 0, width, height);
             //rctx.strokeRect(0, 0, width, height);
-                mIterator();
+            mIterator();
         };
-        
+
         // changes innerText to and assigns x-y coordinates 
         document.getElementById('canvas')
         .addEventListener('mousedown', (event) => {
@@ -105,21 +79,41 @@ window.addEventListener("DOMContentLoaded", () => {
             // invoke to change color of pixel based on coordinates
             changePixelColor(offsetX, offsetY);
             
-
+            
         });
+
         // changes color of each `pixel`
         const changePixelColor = (xCoordinate, yCoordinate) => {
             // defining fill style
             rctx.fillStyle = 'black';
+            // return and assign x-origin 
             const xOrigin = sIterator(xCoordinate, width);
+            // return and assign y-origin 
             const yOrigin = sIterator(yCoordinate, height);
-            // invokes fillRect method to change color based on x-y coordinates and size of pixel
+            // invokes fillRect method to change color based on x-y coordinates and predefined pixel density
             rctx.fillRect(xOrigin, yOrigin, pixelDensity, pixelDensity);
         };
 
-});
-
-/** GENERAL NOTES:
- * 1. althougth in general HTML element do not have a property type value, <input> tag does.
- * 
- */
+        /** helper functions */
+        
+        // for `createCanvas` function - creates grid by pixel density: 10
+        const mIterator = () => {
+            for (let row = 0; row < width; row += pixelDensity) {
+                for (let col = 0; col < height; col += pixelDensity) {
+                            rctx.strokeRect(row, col, pixelDensity, pixelDensity);
+                        };
+                    };
+        };
+        // for `changePixelColor` returns origin of click event
+        const sIterator = (coordinate, stop) => {
+            for (let origin = 0; origin <= stop; origin += pixelDensity) {
+                const previous = coordinate >= origin;
+                const next = coordinate <= origin + pixelDensity;
+                if (previous && next) {
+                    return origin;
+                };
+            };
+        };
+        
+ });
+    
