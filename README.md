@@ -7,8 +7,8 @@ A simple web app for making pixel art
 
 | Priorities | Description                                             | status |
 | --- | --- | --- |
-| 1.0 | User can select grid size                                      | :check: |
-| 1.1 | Application autogenerates design canvas                        | :hea_check_mark: |
+| 1.0 | User can select grid size                                      | :heavy_check_mark |
+| 1.1 | Application autogenerates design canvas                        | ✔️ |
 | 1.2 | User can select the color or randomly generate one             | :heavy_check_mark: |
 | 1.3 | User can reselect a color or or randomly generate one, again   | :heavy_check_mark: |
 | - | -                                                                |                    |
