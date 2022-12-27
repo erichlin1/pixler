@@ -84,14 +84,17 @@ window.addEventListener("DOMContentLoaded", () => {
 
         // changes color of each `pixel`
         const changePixelColor = (xCoordinate, yCoordinate) => {
+            const fillColor = 'black'
             // defining fill style
-            rctx.fillStyle = 'black';
+            rctx.fillStyle = fillColor;
             // return and assign x-origin 
             const xOrigin = sIterator(xCoordinate, width);
             // return and assign y-origin 
             const yOrigin = sIterator(yCoordinate, height);
             // invokes fillRect method to change color based on x-y coordinates and predefined pixel density
             rctx.fillRect(xOrigin, yOrigin, pixelDensity, pixelDensity);
+            // changes color back to white if user clicks on the same spot
+ 
         };
 
         /** helper functions */
