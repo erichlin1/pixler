@@ -62,16 +62,21 @@ window.addEventListener("DOMContentLoaded", () => {
         };
 
         // helper function 
-        const mIterator = (x, y) => {
-            const rowEnd = width;
-            const colEnd = height;
-            if ()
-            for (let row = 0; row < rowEnd; row += pixelDensity) {
-                for (let col = 0; col < colend; col += pixelDensity) {
-                    rctx.strokeRect(row, col, pixelDensity, pixelDensity);
-                };
-            };
+        const mIterator = () => {
+            for (let row = 0; row < width; row += pixelDensity) {
+                for (let col = 0; col < height; col += pixelDensity) {
+                            rctx.strokeRect(row, col, pixelDensity, pixelDensity);
+                        };
+                    };
         };
+
+        const sIterator = (xCoordinate, yCoordinate) => {
+            
+
+            // return origin coordinates
+            return {'x': 40, 'y': 40};
+        };
+
 
         // use case: creates rec. canvas set by `height` and `width`
         const createCanvas = () => {
@@ -98,12 +103,13 @@ window.addEventListener("DOMContentLoaded", () => {
 
         });
         // changes color of each `pixel`
-        const changePixelColor = (x, y) => {
+        const changePixelColor = (xCoordinate, yCoordinate) => {
             // defining fill style
             rctx.fillStyle = 'black';
-            mIterator(x,y);
+            const xOrigin = sIterator(xCoordinate, yCoordinate).x;
+            const yOrigin = sIterator(xCoordinate, yCoordinate).y;
             // invokes fillRect method to change color based on x-y coordinates and size of pixel
-            rctx.fillRect(x, y, pixelDensity, pixelDensity);
+            rctx.fillRect(xOrigin, yOrigin, pixelDensity, pixelDensity);
         };
 
 });
