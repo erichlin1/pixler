@@ -1,6 +1,6 @@
 # Pixler
 
-A simple GUI web-based application for making pixel art.
+A simple web app for making pixel art
 
 
 ## Proposed Functionalities
