@@ -7,7 +7,7 @@ A simple GUI web-based application for making pixel art.
 
 | Priorities | Description                                             | status |
 | --- | --- | --- |
-| 1.0 | User can select grid size                                      | - [ ]       |
+| 1.0 | User can select grid size                                      | - [x]       |
 | 1.1 | Application autogenerates design canvas                        |        |
 | 1.2 | User can select the color or randomly generate one             |        |
 | 1.3 | User can reselect a color or or randomly generate one, again   |        |
