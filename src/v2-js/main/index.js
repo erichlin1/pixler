@@ -9,35 +9,40 @@ window.addEventListener("DOMContentLoaded", () => {
         // gets canvas id
         const canvasElement = document.getElementById('canvas');
         // gets rendering context for  id `canvas`
-        const rctx = canvasElement.getContext('2d');       
-        // size of `pixel`
-        // width
-        const pixelDensity = Color.pixel();
+        const rctx = canvasElement.getContext('2d');
+        // enclosed variables for use in multiple callbacks
+        const pixelDensity = 10;
+        let densityInput;
+        let height;
+        let width;
 
-
-        const canvas = (event) => {
+        document.getElementById('grid-input-field')
+        .addEventListener('submit', (event) => {
             // prevents default behavior of the submitEvent which is submitting data to the server
             event.preventDefault();
-
             // user input width 
-            const width = document.getElementById('width-input').value;
+            width = document.getElementById('width-input').value;
             // user input height
-            const height = document.getElementById('height-input').value;
+            height = document.getElementById('height-input').value;        
+            // gets pixel density and converts `string` type to `number` type
+            //densityInput = document.getElementById('density-input').value;
+            // assigns `pixelDensity`, the value of densityInput if true, otherwise 1
+            //pixelDensity = Number(densityInput) > 0 ? Number(densityInput) : 1;
             // sets canvas size
-            setCanvas(height, width);
+            setCanvas();
             // creates a canvas size
-            createCanvas(height, width);
+            createCanvas();
             // gets coordinates of canvas 
-        };
+        })
 
         // use case: sets `height` and `width` of canvas background
-        const setCanvas = (height, width) => {
+        const setCanvas = () => {
             // gets canvas id
             const canvas = document.getElementById('canvas');
             // checks if user input is valid; edge case (0)
             if (height < 0 && width < 0) {
                 // invokes  function to set innerText
-                alertInvalidEntry(height, width);
+                alertInvalidEntry();
                 // sets canvas 0
                 createCanvas(0, 0);
             } else {
@@ -49,64 +54,57 @@ window.addEventListener("DOMContentLoaded", () => {
         };
 
         // use case: alerts user that their entry is invalid - valid [0, Infinity);
-        const alertInvalidEntry = (height, width) => {
+        const alertInvalidEntry = () => {
             const message = document.getElementById('alert-message');
             const invalidEntry = `Please enter a valid entry, startin from 0`;
             message.setAttribute('style','color:red');
             message.innerText = invalidEntry;
         };
 
+        // helper function 
+        const mIterator = (x, y) => {
+            const rowEnd = width;
+            const colEnd = height;
+            if ()
+            for (let row = 0; row < rowEnd; row += pixelDensity) {
+                for (let col = 0; col < colend; col += pixelDensity) {
+                    rctx.strokeRect(row, col, pixelDensity, pixelDensity);
+                };
+            };
+        };
 
         // use case: creates rec. canvas set by `height` and `width`
-        const createCanvas = (height, width) => {
+        const createCanvas = () => {
             rctx.fillStyle = 'white';
             rctx.strokeStyle = 'grey';
             rctx.fillRect(0, 0, width, height);
             //rctx.strokeRect(0, 0, width, height);
-            for (let row = 0; row < width; row += pixelDensity) {
-                for (let col = 0; col < height; col += pixelDensity) {
-                    rctx.strokeRect(row, col, pixelDensity, pixelDensity);
-                };
-            };
-            
-        };
-
-
-        // change pixel density
-        const askPixelDensity = () => {
-            const density = 
+                mIterator();
         };
         
+        // changes innerText to and assigns x-y coordinates 
+        document.getElementById('canvas')
+        .addEventListener('mousedown', (event) => {
+            // canvas coordinates
+            const offsetX = event.offsetX;
+            const offsetY = event.offsetY;
+            // gets id element 
+            const canvasCoordinates = document.getElementById('canvas-coordinates');
+            // gets id and sets innerText
+            document.getElementById('canvas-coordinates').innerText = `x: ${offsetX} y: ${offsetY}`;
+            // invoke to change color of pixel based on coordinates
+            changePixelColor(offsetX, offsetY);
+            
 
-        const changeColor = (x, y) => {
+        });
+        // changes color of each `pixel`
+        const changePixelColor = (x, y) => {
             // defining fill style
             rctx.fillStyle = 'black';
+            mIterator(x,y);
+            // invokes fillRect method to change color based on x-y coordinates and size of pixel
             rctx.fillRect(x, y, pixelDensity, pixelDensity);
         };
-
-
-        // changes innerText to and assigns x-y coordinates 
-        const coordinates = (event) => {
-            const currCoordinates = {};
-            const canvasCoordinates = document.getElementById('canvas-coordinates');
-            const boundingClientRect = canvasCoordinates.getBoundingClientRect();
-            const boundingX = boundingClientRect.left;
-            const boundingY = boundingClientRect.top;
-            const clientX = event.clientX;
-            const clientY = event.clientY;
-            const x = clientX - boundingX;
-            const y = clientY - boundingY;
-            console.log(boundingClientRect, event);
-            currCoordinates['x'] = x;
-            currCoordinates['y'] = y;
-            document.getElementById('canvas-coordinates').innerText = `x: ${currCoordinates.x} y: ${currCoordinates.y}`;
-            // invoke to change color of pixel based on coordinates
-            changeColor(currCoordinates.x, currCoordinates.y);
-        }; 
-        
-
-        document.getElementById('grid-input-field').addEventListener('submit', canvas);
-        document.getElementById('canvas').addEventListener('mousedown', coordinates)
 
 });
 

@@ -7,8 +7,4 @@ export default class Color {
         /* 1 is  opaque and 0 is transparent */
         this.alpha = 1;
     };
-    static pixel() {
-        const size = {'width': 10, 'height':10} ;
-        return size;
-    };
 };
