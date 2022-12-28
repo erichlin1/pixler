@@ -10,7 +10,8 @@ window.addEventListener("DOMContentLoaded", () => {
         const canvasElement = document.getElementById('canvas');
         // gets rendering context for  id `canvas`
         const rctx = canvasElement.getContext('2d');
-
+        // get alert message
+        const message = document.getElementById('alert-message');
         // enclosed variables for use in multiple callbacks
         const pixelDensity = 10;
         // let densityInput;
@@ -42,6 +43,8 @@ window.addEventListener("DOMContentLoaded", () => {
                 // sets canvas 0
                 createCanvas(0, 0);
             } else {
+                // resets alert message
+                message.innerText = ' ';
                 // set height attribute
                 canvas.setAttribute('height', height);
                 // set width attribute
@@ -51,7 +54,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
         // use case: alerts user that their entry is invalid - valid [0, Infinity);
         const alertInvalidEntry = () => {
-            const message = document.getElementById('alert-message');
             const invalidEntry = `Please enter a valid entry, startin from 0`;
             message.setAttribute('style','color:red');
             message.innerText = invalidEntry;
@@ -75,7 +77,8 @@ window.addEventListener("DOMContentLoaded", () => {
             // gets id element 
             const canvasCoordinates = document.getElementById('canvas-coordinates');
             // gets id and sets innerText
-            document.getElementById('canvas-coordinates').innerText = `x: ${offsetX} y: ${offsetY}`;
+            const displayInfo = document.getElementById('canvas-coordinates')
+            displayInfo.innerText = `x: ${offsetX} y: ${offsetY} width: ${width} height: ${height}`;
             // invoke to change color of pixel based on coordinates
             changePixelColor(offsetX, offsetY);
             

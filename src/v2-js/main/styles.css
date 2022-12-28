@@ -18,3 +18,8 @@ div {
   justify-content: center;
   padding: 15px;
 }
+
+#canvas-coordinates {
+  display: flex;
+  justify-content: center;
+}

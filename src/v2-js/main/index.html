@@ -7,6 +7,7 @@
             <link href="./styles.css" rel="stylesheet">
         </head>
         <body>
+            <!-- Header -->
             <section class ="header">
                 <h1 id="name">Pixler</h1>
                     <p id="description">
@@ -15,6 +16,7 @@
                         If you don't feel creative today, simply upload a picture and download your pixeled art.
                     </p>
             </section>
+            <!-- Canvas Size -->
             <section id="canvas-size-section">
                 <div>
                     <form id="grid-input-field">
@@ -24,19 +26,16 @@
                         <input type="submit" value="submit">
                     </form>
                 </div>
+                </section>
                 <div>
                     <p id="alert-message"></p>
                 </div>
-            </section>
-                <div> 
-                    <!-- Canvas -->
-                    <div>
-                        <h1 id="canvas-coordinates"></h1>
-                    </div>
-                </div>
-            </section>
             <div>
                 <canvas id="canvas"></canvas>
+            </div>
+            <div>
+                <p id="canvas-coordinates"></p><br>
+                <p id="display-size"></p>
             </div>
         <script type='module' src='./index.js'></script>
         </body>
