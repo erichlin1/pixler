@@ -100,6 +100,10 @@ window.addEventListener("DOMContentLoaded", () => {
  
         };
 
+
+
+
+
         /** helper functions */
         
         // for `createCanvas` function - creates grid by pixel density: 10

@@ -9,9 +9,10 @@
         <body>
             <!-- Header -->
             <section class ="header">
-                <h1 id="name">Pixler</h1>
-                    <p id="description">
-                    </p>
+                <div>
+                    <canvas id="'logo"></canvas>
+                    <h1 id="name">Pixler</h1>
+                </div>
             </section>
             <!-- Canvas Size -->
             <section id="canvas-size-section">
@@ -19,21 +20,23 @@
                     <form id="grid-input-field">
                         <input type="number" id="height-input" placeholder="height in px">
                         <input type="number" id="width-input" placeholder="width in px">
-                        <!--<input type="number" id="density-input" placeholder="default density: 1">-->
                         <input type="submit" value="submit">
+                    </form>
+                    <form id="canvas-file">
+                        <input type="button" value="download">
                     </form>
                 </div>
                 </section>
                 <div>
                     <p id="alert-message"></p>
                 </div>
-            <div>
-                <canvas id="canvas"></canvas>
-            </div>
-            <div>
-                <p id="canvas-coordinates"></p><br>
-                <p id="display-size"></p>
-            </div>
+                <div>
+                    <p id="canvas-coordinates"></p><br>
+                    <p id="display-size"></p>
+                </div>
+                <div>
+                    <canvas id="canvas"></canvas>
+                </div>
         <script type='module' src='./index.js'></script>
         </body>
     </html>
